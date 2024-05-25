@@ -1,12 +1,90 @@
 "use client";
 
 import KodeZnippets from "@/_icons/KodeZnippets";
+import * as SheetPrimitive from "@radix-ui/react-dialog";
+import { Menu, X } from "lucide-react";
+
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { useState } from "react";
+import Link from "next/link";
+
+export function SheetSide() {
+  const [open, setOpen] = useState(false);
+  return (
+    <Sheet open={open} onOpenChange={setOpen}>
+      <SheetTrigger asChild>
+        <div className="px-4">
+          <div className="cursor-pointer">
+            <Menu />
+          </div>
+        </div>
+      </SheetTrigger>
+      <SheetContent side={"right"} className="w-full">
+        <div className="sticky top-10 max-h-screen">
+          <SheetPrimitive.Close className="absolute right-4  rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-slate-100 dark:ring-offset-slate-950 dark:focus:ring-slate-300 dark:data-[state=open]:bg-slate-800">
+            <X className="h-4 w-4" />
+            <span className="sr-only">Close</span>
+          </SheetPrimitive.Close>
+          <SheetHeader>
+            <SheetTitle>
+              <KodeZnippets width={200} />
+            </SheetTitle>
+            <SheetDescription className="!mt-8">
+              <Link href="/blog" onClick={() => setOpen(false)}>
+                Blog
+              </Link>
+            </SheetDescription>
+          </SheetHeader>
+        </div>
+      </SheetContent>
+    </Sheet>
+  );
+}
 
 function Header() {
   return (
-    <div className="flex py-5 justify-between sticky w-full top-0 left-0 right-0 backdrop-blur-3xl bg-white/90">
-      <KodeZnippets width={300} />
-      <div className="md:hidden"></div>
+    <div className="py-5 sticky w-full top-0 left-0 right-0 backdrop-blur-3xl bg-white/90">
+      <div className="flex justify-between items-center max-w-7xl mx-auto">
+        <div className="md:hidden px-4">
+          <Link href={"/"}>
+            <KodeZnippets width={200} />
+          </Link>
+          <span className="text-xs italic">
+            <span className="text-gray-500">{"{/* "}</span>
+            <span className="text-green-600">
+              {`Dokumenting Koding Journey `}
+            </span>
+            <span className="text-gray-500">{"*/}"}</span>
+          </span>
+        </div>
+        <div className="hidden md:block px-4">
+          <Link href={"/"}>
+            <KodeZnippets width={300} />
+          </Link>
+          <span className="text-sm italic">
+            <span className="text-gray-500">{"{/* "}</span>
+            <span className="text-green-600">
+              {`Dokumenting Koding Journey `}
+            </span>
+            <span className="text-gray-500">{"*/}"}</span>
+          </span>
+        </div>
+        <div className="md:hidden">
+          <SheetSide />
+        </div>
+        <div className="hidden md:flex px-4 gap-4">
+          <Link href={"/blog"} className="hover:text-green-600 hover:underline">
+            Blog
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }
