@@ -14,10 +14,12 @@ import {
 } from "@/components/ui/sheet";
 import { useState } from "react";
 import Link from "next/link";
+import { useMediaQuery } from "@/app/hooks/use-media-query";
 
 export function SheetSide() {
   const [open, setOpen] = useState(false);
-  return (
+  const isDesktop = useMediaQuery("(max-width:768px)");
+  return isDesktop ? (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <div className="px-4">
@@ -26,26 +28,30 @@ export function SheetSide() {
           </div>
         </div>
       </SheetTrigger>
-      <SheetContent side={"right"} className="w-full">
+      <SheetContent side={"left"} className="w-full">
         <div className="sticky top-10 max-h-screen">
-          <SheetPrimitive.Close className="absolute right-4  rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-slate-100 dark:ring-offset-slate-950 dark:focus:ring-slate-300 dark:data-[state=open]:bg-slate-800">
-            <X className="h-4 w-4" />
-            <span className="sr-only">Close</span>
-          </SheetPrimitive.Close>
-          <SheetHeader>
-            <SheetTitle>
-              <KodeZnippets width={200} />
+          <div className="absolute -top-10 left-0 right-0 flex justify-end">
+            <SheetPrimitive.Close className="rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-slate-100 dark:ring-green-600 dark:focus:ring-slate-300 dark:data-[state=open]:bg-slate-800">
+              <X className="h-4 w-4" />
+              <span className="sr-only">Close</span>
+            </SheetPrimitive.Close>
+          </div>
+          <SheetHeader className="mt-16">
+            <SheetTitle className="flex justify-center sm:justify-start">
+              <Link href={"/"} onClick={() => setOpen(false)}>
+                <KodeZnippets width={200} />
+              </Link>
             </SheetTitle>
             <SheetDescription className="!mt-8">
               <Link href="/blog" onClick={() => setOpen(false)}>
-                Blog
+                <div className="hover:bg-green-50 p-2 rounded-sm">Blog</div>
               </Link>
             </SheetDescription>
           </SheetHeader>
         </div>
       </SheetContent>
     </Sheet>
-  );
+  ) : null;
 }
 
 function Header() {

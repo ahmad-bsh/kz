@@ -1,6 +1,5 @@
 import KZ from "@/_icons/KZ";
-import React from "react";
-import { ChevronRight, Slash } from "lucide-react";
+import KodeZnippets from "@/_icons/KodeZnippets";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -8,13 +7,25 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import KodeZnippets from "@/_icons/KodeZnippets";
 
 function Blog() {
   return (
     <div className="max-w-7xl mx-auto w-full px-4">
       <div className="h-52 w-full bg-green-50 mt-10 rounded border border-green-500 flex flex-col justify-center items-center">
-        <KodeZnippets width={400} />
+        <div className="md:hidden">
+          <KodeZnippets width={200} />
+        </div>
+        <div className="hidden md:block lg:hidden">
+          <KodeZnippets width={300} />
+        </div>
+
+        <div className="hidden lg:block xl:hidden">
+          <KodeZnippets width={400} />
+        </div>
+
+        <div className="hidden xl:block">
+          <KodeZnippets width={500} />
+        </div>
         <Breadcrumb className="mt-5">
           <BreadcrumbList>
             <BreadcrumbItem>
