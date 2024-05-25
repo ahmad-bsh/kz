@@ -1,12 +1,11 @@
+import UnderConstruction from "@/_lotties/animations/UnderConstruction";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
 import React from "react";
-import Header from "@/components/Header";
 import { twMerge } from "tailwind-merge";
-import UnderConstruction from "@/_lotties/animations/UnderConstruction";
-import PrelineScript from "@/components/PrelineScript";
-import Footer from "@/components/Footer";
+import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
