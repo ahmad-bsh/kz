@@ -20,7 +20,6 @@ You can follow these links, if you are in a hurry.
 
 - [Folder Structure 3 - The Ultimate Folder Structure](#folder-structure-3---the-ultimate-folder-structure)
 
-
 ## Folder Structure 1
 
 This structure is straight forward. We use the component name as filename.
@@ -84,8 +83,6 @@ export default RootLayout;
 - We need to find another place to store only header specific utility styles or components such as Header.css, etc.
 
 ## Folder Structure 2
-
-
 
 This structure is similar to [Folder Structure 1](#folder-structure-1). But here, the components files live inside a folder. The name of the folder will also be the component name.
 
@@ -204,7 +201,7 @@ export { default } from "./Header"; // Default export
 export * from "./Header"; // Named export
 ```
 
-```jsx {1} showLineNumbers title="src/layout.tsx"
+```jsx {1, 2} showLineNumbers title="src/layout.tsx"
 // No need to specify /Header one more time as in Folder Structure 2
 import Header from "@components/Header"; // Default import
 import { MobileMenu } from "@components/Header"; //Named import

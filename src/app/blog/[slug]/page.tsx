@@ -3,10 +3,37 @@ import { notFound } from "next/navigation";
 import React from "react";
 import "@/styles/mdx.css";
 import MDXComponent from "@/components/MDXComponent";
+import { Metadata } from "next";
+import { siteConfig } from "../../../../config/site";
 
 interface BlogPostPageProps {
   params: {
     slug: string;
+  };
+}
+
+export async function generateMetadata({
+  params,
+}: BlogPostPageProps): Promise<Metadata> {
+  const post = await getPostFromParams({ params });
+
+  if (!post) return {};
+
+  const ogSearchParams = new URLSearchParams();
+  ogSearchParams.set("title", post.title);
+
+  return {
+    title: post.title,
+    description: post.description,
+    authors: {
+      name: siteConfig.author,
+    },
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      type: "article",
+      url: post.slug,
+    },
   };
 }
 
@@ -47,4 +74,3 @@ async function BlogPost({ params }: BlogPostPageProps) {
 }
 
 export default BlogPost;
-
