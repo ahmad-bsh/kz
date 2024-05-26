@@ -7,6 +7,7 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import Link from "next/link";
 
 function Blog() {
   return (
@@ -39,10 +40,24 @@ function Blog() {
         </Breadcrumb>
       </div>
 
-      <div className="w-full bg-gray-50 mt-8 border flex flex-col items-center justify-center p-20">
-        <div>No blogs yet!</div>
-        <div className="text-xs">Stay tuned for dev content</div>
-      </div>
+      {false ? (
+        <div className="w-full bg-gray-50 mt-8 border flex flex-col items-center justify-center p-20">
+          <div>No blogs yet!</div>
+          <div className="text-xs">Stay tuned for dev content</div>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mt-8">
+          {/*  */}
+          <Link href={"/blog/productive-folder-structure"} className="border px-2 py-3 space-y-3">
+            <div className="font-bold">Clean & Productive Folder Structure</div>
+            <div className="line-clamp-2">
+              Organise your project structure to keep your code clean in import
+              statements and enable accessibility while searching files in Text
+              Editor.
+            </div>
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

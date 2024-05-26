@@ -1,0 +1,232 @@
+---
+title: Clean & Productive Folder Structure
+description: Organise your project structure to keep your code clean in import statements and enable accessibility while searching files in Text Editor.
+date: 2024-04-21
+published: true
+author: AhmadBShaik
+---
+
+## Introduction
+
+A good Folder Structure is needed to keep the code maintainable and productive.
+
+In this post, I will be discussing pros and cons of three folder structures which may help you to organise you project.
+
+You can follow these links, if you are in a hurry.
+
+- [Folder Structure 1](#folder-structure-1)
+
+- [Folder Structure 2](#folder-structure-2)
+
+- [Folder Structure 3 - The Ultimate Folder Structure](#folder-structure-3---the-ultimate-folder-structure)
+
+
+## Folder Structure 1
+
+This structure is straight forward. We use the component name as filename.
+
+It will be easier to search the file using component name because filename and component name are same.
+
+Hit `Ctrl + P` shortcut (in Visual Studio Code) and type Header, You will see the Header.tsx file. Hit enter to open the file.
+
+```plaintext {4-5}
+project-root/
+├── src/
+│   ├── components/
+│   │   ├── Header.tsx
+│   │   └── Footer.tsx
+│   └── app/
+│       ├── layout.tsx
+│       └── page.tsx
+├── public/
+│   └── favicon.ico
+├── .gitignore
+├── package.json
+└── tsconfig.json
+```
+
+```jsx showLineNumbers title="src/components/Header.tsx"
+"use client";
+
+function Header() {
+  return (
+    <div className="w-full">
+      <div className="w-full max-w-7xl mx-auto">BrandName</div>
+    </div>
+  );
+}
+
+export default Header;
+```
+
+```jsx {1} showLineNumbers title="src/app/layout.tsx"
+import Header from "@components/Header";
+
+function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <div className="flex-1">{children}</div>
+    </div>
+  );
+}
+
+export default RootLayout;
+```
+
+**Pros of Folder Structure 1**
+
+- The import statements are clean
+- File search is easy
+
+**Cons of Folder Structure 1**
+
+- We need to find another place to store only header specific utility styles or components such as Header.css, etc.
+
+## Folder Structure 2
+
+
+
+This structure is similar to [Folder Structure 1](#folder-structure-1). But here, the components files live inside a folder. The name of the folder will also be the component name.
+
+This structure enables to store the component specific files inside the folder along with main component file.
+
+```plaintext {4-8}
+project-root/
+├── src/
+│   ├── components/
+│   │   ├── Header
+│   │   │   │── Header.tsx
+│   │   │   │── Header.css
+│   │   │   │── DesktopNavigation.tsx
+│   │   │   └── MobileMenu.tsx
+│   │   └── Footer
+│   │       └── Footer.tsx
+│   └── app/
+│       ├── layout.tsx
+│       └── page.tsx
+├── public/
+│   └── favicon.ico
+├── .gitignore
+├── package.json
+└── tsconfig.json
+```
+
+```jsx showLineNumbers title="src/components/Header.tsx"
+"use client";
+
+function Header() {
+  return (
+    <div className="w-full">
+      <div className="w-full max-w-7xl mx-auto">BrandName</div>
+    </div>
+  );
+}
+
+export default Header;
+```
+
+```jsx {1} showLineNumbers title="src/app/layout.tsx"
+import Header from "@components/Header/Header";
+
+function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <div className="flex-1">{children}</div>
+    </div>
+  );
+}
+
+export default RootLayout;
+```
+
+**Pros of Folder Structure 2**
+
+- We can store component specific code inside the folder (Header/ in this case)
+
+**Cons of Folder Structure 2**
+
+- Imports statements will be redundant
+- We need to specify Header/Header while searching and navigating to the Header component file in text editors
+
+## Folder Structure 3 - The Ultimate Folder Structure
+
+This structure is same as [Folder Structure 2](#folder-structure-2). But here, each component folder will have an index.ts file.
+
+It will have features of above two Folder Structures
+
+This structure enables to store the component specific files inside the folder along with main component file.
+
+It will be easier to search the file using component name.
+
+Hit `Ctrl + P` shortcut (in Visual Studio Code) and type Header, You will see the Header.tsx file. Hit enter to open the file.
+
+```plaintext {7,12}
+project-root/
+├── src/
+│   ├── components/
+│   │   ├── Header
+│   │   │   │── Header.tsx
+│   │   │   │── Header.css
+│   │   │   │── index.ts
+│   │   │   │── DesktopNavigation.tsx
+│   │   │   └── MobileMenu.tsx
+│   │   └── Footer
+│   │       │── Footer.tsx
+│   │       └── index.ts
+│   └── app/
+│       ├── layout.tsx
+│       └── page.tsx
+├── public/
+│   └── favicon.ico
+├── .gitignore
+├── package.json
+└── tsconfig.json
+```
+
+```jsx showLineNumbers title="Header.tsx"
+"use client";
+
+function Header() {
+  return (
+    <div className="w-full">
+      <div className="w-full max-w-7xl mx-auto">BrandName</div>
+    </div>
+  );
+}
+
+export default Header;
+```
+
+```jsx {1,2} showLineNumbers title="src/components/Header/index.tsx"
+export { default } from "./Header"; // Default export
+export * from "./Header"; // Named export
+```
+
+```jsx {1} showLineNumbers title="src/layout.tsx"
+// No need to specify /Header one more time as in Folder Structure 2
+import Header from "@components/Header"; // Default import
+import { MobileMenu } from "@components/Header"; //Named import
+
+function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <div className="flex-1">{children}</div>
+    </div>
+  );
+}
+
+export default RootLayout;
+```
+
+**Pros of Folder Structure 3**
+
+- We can store component specific code inside the folder (Header/ in this case)
+- The imports look clean
+- File search in editor will be easy
+
+**Cons of Folder Structure 3**
+
+- You need add one extra file
