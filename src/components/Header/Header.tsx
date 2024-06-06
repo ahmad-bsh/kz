@@ -66,7 +66,7 @@ function Header() {
           <span className="text-xs italic">
             <span className="text-gray-500">{"{/* "}</span>
             <span className="text-green-600">
-              {`Dokumenting Koding Journey `}
+              {`Documenting Koding Journey `}
             </span>
             <span className="text-gray-500">{"*/}"}</span>
           </span>
@@ -78,7 +78,7 @@ function Header() {
           <span className="text-sm italic">
             <span className="text-gray-500">{"{/* "}</span>
             <span className="text-green-600">
-              {`Dokumenting Koding Journey `}
+              {`Documenting Koding Journey `}
             </span>
             <span className="text-gray-500">{"*/}"}</span>
           </span>

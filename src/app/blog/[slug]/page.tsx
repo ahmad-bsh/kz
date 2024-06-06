@@ -5,6 +5,7 @@ import "@/styles/mdx.css";
 import MDXComponent from "@/components/MDXComponent";
 import { Metadata } from "next";
 import { siteConfig } from "../../../../config/site";
+import Link from "next/link";
 
 interface BlogPostPageProps {
   params: {
@@ -65,7 +66,11 @@ async function BlogPost({ params }: BlogPostPageProps) {
         <article className="prose max-w-none w-full min-w-7xl pt-5 col-span-3">
           <h1>{post.title}</h1>
           <p>{post.description}</p>
-
+          <div className="flex space-x-2">
+            {post.tags.map((tag) => (
+              <Link className="p-1 text-green-500 no-underline hover:underline" href={`/tags/${tag}`}>#{tag}</Link>
+            ))}
+          </div>
           <MDXComponent code={post.body} />
         </article>
       </div>

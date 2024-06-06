@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Kode Znippets",
-  url: 'example.com',
+  url: 'www.kodeznippets.com',
   description: "Test Description",
   author: "AhmadBShaik",
   links: {
