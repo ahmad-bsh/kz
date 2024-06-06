@@ -68,7 +68,7 @@ async function BlogPost({ params }: BlogPostPageProps) {
           <p>{post.description}</p>
           <div className="flex space-x-2">
             {post.tags.map((tag) => (
-              <Link className="p-1 text-green-500 no-underline hover:underline" href={`/tags/${tag}`}>#{tag}</Link>
+              <Link key={tag} className="p-1 text-green-500 no-underline hover:underline" href={`/tags/${tag}`}>#{tag}</Link>
             ))}
           </div>
           <MDXComponent code={post.body} />
