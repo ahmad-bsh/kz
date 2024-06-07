@@ -8,6 +8,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { siteConfig } from "../../../../config/site";
 import Image from "next/image";
+import AuthorAvatar from "@/components/AuthorAvatar/AuthorAvatar";
 
 interface BlogPostPageProps {
   params: {
@@ -83,6 +84,10 @@ async function BlogPost({ params }: BlogPostPageProps) {
   if (!post) {
     notFound();
   }
+  const author =
+    siteConfig.authors.find((author) => author.name === post.author) ??
+    siteConfig.authors[0];
+
   return (
     <div className="space-y-20 max-w-7xl mx-auto w-full mb-10 px-4">
       <div className="w-full">
@@ -95,6 +100,7 @@ async function BlogPost({ params }: BlogPostPageProps) {
           />
         </div>
         <article className="prose max-w-none w-full min-w-7xl pt-5 col-span-3">
+          <AuthorAvatar author={author} date={post.date} />
           <h1>{post.title}</h1>
           <p>{post.description}</p>
           <div className="flex space-x-2">

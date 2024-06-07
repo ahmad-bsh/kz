@@ -1,0 +1,73 @@
+---
+title: Intro to TypeScript
+description: JavaScript with type safety
+date: 2024-06-01
+published: true
+author: AhmadBShaik
+tags: ["beginner", "upgrade"]
+---
+
+## Introduction
+
+JavaScript is great for both front-end and back-end. We can leverage the power of JavaScript using TypeScript by typing our code strictly.
+
+### What is TypeScript?
+
+TypeScript is a library which allows us to write type safe JavaScript code.
+
+### Example 1
+
+```js
+const HelloJS = () => {
+  return "Hello JS";
+};
+console.log(HelloJS());
+```
+
+```ts
+const HelloTS = (): string => {
+  return "Hello JS";
+};
+console.log(HelloTS());
+```
+
+The above example enforces the function to return only string
+
+### Example 2
+
+```js
+const add = (...nums) => {
+  return nums.reduce((accumulator, num) => accumulator + num, 0);
+};
+console.log(add(1, 2, 3));
+```
+
+```ts
+const add = (...nums: Array<number>): number => {
+  return nums.reduce((accumulator, num) => accumulator + num, 0);
+};
+console.log(add(1, 2, 3));
+```
+
+The above example enforces the function to return only number and accept only numbers as arguments
+
+Everything seems pretty fine till now. Let's tweak the above code.
+
+### Example 2: Failure Case
+
+```js
+const add = (...nums) => {
+  return nums.reduce((accumulator, num) => accumulator + num, 0);
+};
+console.log(add(1, 2, 3, "four")); //6four
+```
+
+```ts
+const add = (...nums: Array<number>): number => {
+  return nums.reduce((accumulator, num) => accumulator + num, 0);
+};
+console.log(add(1, 2, 3, "four")); // Error
+```
+
+Here, When we pass string in JavaScript everything will be fine in both compile time and run time, gives undesirable results.
+But, TypeScript will throw an error at compile time, The build will fail till we fix this code.
