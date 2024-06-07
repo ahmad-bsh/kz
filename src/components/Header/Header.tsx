@@ -43,10 +43,21 @@ export function SheetSide() {
                 <KodeZnippets width={200} />
               </Link>
             </SheetTitle>
-            <SheetDescription className="!mt-8">
-              <Link href="/blog" onClick={() => setOpen(false)}>
-                <div className="hover:bg-green-50 p-2 rounded-sm">Blog</div>
-              </Link>
+            <SheetDescription className="!mt-8 space-y-5">
+              <div>
+                <Link href="/blog" onClick={() => setOpen(false)}>
+                  <span className="hover:bg-green-50 p-2 rounded-sm text-black">
+                    Blog
+                  </span>
+                </Link>
+              </div>
+              <div>
+                <Link href="/about" onClick={() => setOpen(false)}>
+                  <span className="hover:bg-green-50 p-2 rounded-sm text-black">
+                    About
+                  </span>
+                </Link>
+              </div>
             </SheetDescription>
           </SheetHeader>
         </div>
@@ -89,6 +100,12 @@ function Header() {
         <div className="hidden md:flex px-4 gap-4">
           <Link href={"/blog"} className="hover:text-green-600 hover:underline">
             Blog
+          </Link>
+          <Link
+            href={"/about"}
+            className="hover:text-green-600 hover:underline"
+          >
+            About
           </Link>
         </div>
       </div>

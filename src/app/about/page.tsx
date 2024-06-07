@@ -42,7 +42,7 @@ function About() {
         </p>
       </section>
       <section className="space-y-5 mt-5">
-        <div className="text-xl font-bold">My Mission</div>
+        <div className="text-xl font-bold">Who Am I?</div>
 
         <p>
           I am a front-end engineer with 2+ years of experience in developing
