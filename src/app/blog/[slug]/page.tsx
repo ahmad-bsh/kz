@@ -24,12 +24,15 @@ export async function generateMetadata({
 
   const ogSearchParams = new URLSearchParams();
   ogSearchParams.set("title", post.title);
+  const author =
+    siteConfig.authors.find((author) => author.name === post.author) ??
+    siteConfig.authors[0];
 
   return {
     title: post.title,
     description: post.description,
     authors: {
-      name: siteConfig.author,
+      name: author.name,
     },
     openGraph: {
       title: post.title,
