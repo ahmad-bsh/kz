@@ -15,7 +15,7 @@ export default function Home() {
             <span className="font-bold text-green-500">KodeZnippets</span>!
           </div>
           <p>
-            Hi! I'm{" "}
+            Hi! I&apos;m{" "}
             <Link href={author?.links?.personalSite!}>
               <span className="text-green-500 font-bold">Ahmad</span>
             </Link>

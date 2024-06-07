@@ -10,7 +10,7 @@ function About() {
   return (
     <div className="max-w-7xl mx-auto px-4">
       <p className="mt-5">
-        Welcome to my personal blog! I'm{" "}
+        Welcome to my personal blog! I&apos;m{" "}
         <Link href={author?.links?.personalSite!}>
           <span className="text-green-500 font-bold">Ahmad</span>
         </Link>
@@ -29,14 +29,14 @@ function About() {
         </p>
         <p>
           <span className="font-bold"> - Document My Learnings:</span> Whether
-          it's a new feature in React, optimizing performance in Next.js, or
-          implementing complex user interfaces, I'll be sharing detailed
+          it&apos;s a new feature in React, optimizing performance in Next.js, or
+          implementing complex user interfaces, I&apos;ll be sharing detailed
           tutorials, guides, and articles that capture my learning process.
         </p>
         <p>
           <span className="font-bold"> - Share My Discoveries:</span> From
           exploring the latest trends in front-end development to experimenting
-          with new tools and libraries, I'll provide honest reviews and deep
+          with new tools and libraries, I&apos;ll provide honest reviews and deep
           dives into the most exciting advancements in the React and Next.js
           ecosystem.
         </p>
@@ -52,9 +52,9 @@ function About() {
         </p>
 
         <p>
-          <span className="font-bold"> - Professional Experience</span>: I've
+          <span className="font-bold"> - Professional Experience</span>: I&apos;ve
           had the privilege of working with Early Stage Startup and Mid Sized
-          Company, where I've honed my skills in React, Next.js, and other
+          Company, where I&apos;ve honed my skills in React, Next.js, and other
           modern web technologies.
         </p>
         <p>
@@ -72,12 +72,12 @@ function About() {
       <section className="space-y-5 mt-5 mb-10">
         <div className="text-xl font-bold">Join the Journey</div>
         <p>
-          This blog is not just about me; it's about us. It's about building a
+          This blog is not just about me; it&apos;s about us. It&apos;s about building a
           community of like-minded individuals who are eager to learn, share,
           and grow together.
         </p>
         <p>
-          Thank you for visiting my blog. Together, let's embark on this
+          Thank you for visiting my blog. Together, let&apos;s embark on this
           exciting journey of discovery, innovation, and personal growth in
           front-end development.
         </p>
