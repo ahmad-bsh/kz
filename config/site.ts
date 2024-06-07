@@ -2,16 +2,21 @@ export const siteConfig = {
   name: "Kode Znippets",
   url: "www.kodeznippets.com",
   description: "Documenting Koding Journey",
-  authors: [{
-    name: "KodeZnippets",
-    image: "/logo.png",
-    fallbackImageText: "KZ",
-  },
-  {
-    name: "AhmadBShaik",
-    image: "/logo.png",
-    fallbackImageText: "AS",
-  },],
+  authors: [
+    {
+      name: "KodeZnippets",
+      image: "/logo.png",
+      fallbackImageText: "KZ",
+    },
+    {
+      name: "AhmadBShaik",
+      image: "/logo.png",
+      fallbackImageText: "AS",
+      links: {
+        personalSite: "https://ahmadbshaik.vercel.app",
+      },
+    },
+  ],
   links: {
     twitter: "",
     github: "",
