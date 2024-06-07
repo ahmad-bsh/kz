@@ -1,11 +1,12 @@
-import { posts } from "#site/content";
-import { notFound } from "next/navigation";
-import React from "react";
-import "@/styles/mdx.css";
+import { Post, posts } from "#site/content";
 import MDXComponent from "@/components/MDXComponent";
+import PostsList from "@/components/Posts/PostsList";
+import "@/styles/mdx.css";
+import { compareDesc, parseISO } from "date-fns";
 import { Metadata } from "next";
-import { siteConfig } from "../../../../config/site";
 import Link from "next/link";
+import { notFound } from "next/navigation";
+import { siteConfig } from "../../../../config/site";
 
 interface BlogPostPageProps {
   params: {
@@ -47,6 +48,24 @@ async function getPostFromParams({ params }: BlogPostPageProps) {
   return post;
 }
 
+function getRelatedPosts(currentPost: Post) {
+  // Extract tags from current post
+  const currentTags = new Set(currentPost.tags);
+
+  // Filter posts that share at least one tag with the current post
+  const relatedPosts = posts.filter(
+    (post) =>
+      post.title !== currentPost.title &&
+      post.tags.some((tag) => currentTags.has(tag))
+  );
+
+  // Sort related posts by date in descending order (latest first)
+  relatedPosts.sort((a, b) => compareDesc(parseISO(a.date), parseISO(b.date)));
+
+  // Return the top 6 latest posts
+  return relatedPosts.slice(0, 6);
+}
+
 export async function generateStaticParams(): Promise<
   BlogPostPageProps["params"][]
 > {
@@ -61,19 +80,33 @@ async function BlogPost({ params }: BlogPostPageProps) {
     notFound();
   }
   return (
-    <div className="space-y-5 max-w-7xl mx-auto w-full mb-10">
-      <div className="w-full px-4">
+    <div className="space-y-20 max-w-7xl mx-auto w-full mb-10 px-4">
+      <div className="w-full">
         <article className="prose max-w-none w-full min-w-7xl pt-5 col-span-3">
           <h1>{post.title}</h1>
           <p>{post.description}</p>
           <div className="flex space-x-2">
             {post.tags.map((tag) => (
-              <Link key={tag} className="p-1 text-green-500 no-underline hover:underline" href={`/tags/${tag}`}>#{tag}</Link>
+              <Link
+                key={tag}
+                className="p-1 text-green-500 no-underline hover:underline"
+                href={`/tags?tag=${tag.replaceAll(" ", "-")}`}
+              >
+                #{tag}
+              </Link>
             ))}
           </div>
           <MDXComponent code={post.body} />
         </article>
       </div>
+      {getRelatedPosts(post).length ? (
+        <div className="px-4">
+          <div className="text-center text-2xl font-medium ">Related posts</div>
+          <div>
+            <PostsList posts={getRelatedPosts(post)} />
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

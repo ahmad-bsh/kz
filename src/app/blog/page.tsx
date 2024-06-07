@@ -1,8 +1,7 @@
 import { posts } from "#site/content";
 import KZ from "@/_icons/KZ";
 import KodeZnippets from "@/_icons/KodeZnippets";
-import Post from "@/components/Posts";
-import PostsList from "@/components/Posts/postsList";
+import PostsList from "@/components/Posts/PostsList";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -10,7 +9,6 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import Link from "next/link";
 
 function Blog() {
   return (

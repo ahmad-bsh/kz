@@ -1,2 +1,2 @@
-export {default} from './post'
-export * from './postsList'
+export {default} from './PostCard'
+export * from './PostsList'

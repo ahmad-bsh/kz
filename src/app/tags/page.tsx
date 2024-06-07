@@ -1,15 +1,16 @@
 "use client";
 import { posts } from "#site/content";
-import React, { Suspense, useMemo, useState } from "react";
+import { Suspense, useMemo } from "react";
 
+import PostsList from "@/components/Posts/PostsList";
 import * as Tabs from "@radix-ui/react-tabs";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import Post from "@/components/Posts";
-import PostsList from "@/components/Posts/postsList";
 
 const TagsTabs = () => {
-  const allTags = ["all"].concat(posts.map((post) => post.tags).flat());
+  const allTags = Array.from(
+    new Set(["all"].concat(posts.map((post) => post.tags).flat()))
+  );
 
   const searchParams = useSearchParams();
   const urlSearchParams = useMemo(() => {
@@ -57,7 +58,7 @@ const TagsTabs = () => {
 
 function Tags() {
   return (
-    <div className="w-full max-w-7xl mx-auto flex flex-col flex-1">
+    <div className="w-full max-w-7xl mx-auto flex flex-col flex-1 px-4">
       <Suspense>
         <TagsTabs />
       </Suspense>
