@@ -31,7 +31,7 @@ export function SheetSide() {
       </SheetTrigger>
       <SheetContent side={"left"} className="w-full">
         <div className="sticky top-10 max-h-screen">
-          <div className="absolute -top-10 left-0 right-0 flex justify-end">
+          <div className="flex justify-end">
             <SheetPrimitive.Close className="rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-slate-100 dark:ring-green-600 dark:focus:ring-slate-300 dark:data-[state=open]:bg-slate-800">
               <X className="h-4 w-4" />
               <span className="sr-only">Close</span>
@@ -57,7 +57,7 @@ export function SheetSide() {
 
 function Header() {
   return (
-    <div className="py-5 sticky w-full top-0 left-0 right-0 backdrop-blur-3xl bg-white/90">
+    <div className="py-5 sticky w-full top-0 left-0 right-0 backdrop-blur-3xl bg-white/90 z-50">
       <div className="flex justify-between items-center max-w-7xl mx-auto">
         <div className="md:hidden px-4">
           <Link href={"/"}>
