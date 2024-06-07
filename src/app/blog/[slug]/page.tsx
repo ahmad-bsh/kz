@@ -7,6 +7,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { siteConfig } from "../../../../config/site";
+import Image from "next/image";
 
 interface BlogPostPageProps {
   params: {
@@ -82,6 +83,14 @@ async function BlogPost({ params }: BlogPostPageProps) {
   return (
     <div className="space-y-20 max-w-7xl mx-auto w-full mb-10 px-4">
       <div className="w-full">
+        <div className="aspect-[4/1] w-full bg-green-50 relative">
+          <Image
+            src={`/blog/images/${post.slugAsParams}.png`}
+            alt=""
+            fill
+            className="rounded-md object-cover"
+          />
+        </div>
         <article className="prose max-w-none w-full min-w-7xl pt-5 col-span-3">
           <h1>{post.title}</h1>
           <p>{post.description}</p>
